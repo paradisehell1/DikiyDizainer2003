@@ -50,7 +50,7 @@ h1, h2, h3, h4, p { margin: 0; }
 a:focus-visible { outline: 3px solid var(--lilac-deep); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-.container { width: min(1200px, 100% - 48px); margin-inline: auto; }
+.container { width: min(1440px, 100% - 48px); margin-inline: auto; }
 section { position: relative; }
 
 /* ---------- Рваные края ---------- */
@@ -94,7 +94,7 @@ section { position: relative; }
 /* ---------- Скотчи-стикеры: геометрия (позиция, размер, поворот) ----------
    Чтобы подкрутить скотч, меняй значения ниже. Для поворота добавь, например:
    transform: rotate(8deg); */
-.hero__tape--yellow { top: 6px; left: 95px; width: 150px; transform: scaleY(-1); }
+.hero__tape--yellow { top: 6px; left: 95px; width: 150px; }
 .hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; }
 .hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; }
 .about__tape--lilac { top: 14px; left: -26px; width: 120px; }
@@ -132,14 +132,26 @@ section { position: relative; }
 .polaroid__empty { width: 100%; height: 100%; background: transparent; }
 
 /* ---------- Шапка ---------- */
-.header { position: absolute; inset: 20px 0 auto; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-.logo { display: inline-block; background: var(--yellow) var(--noise); font-family: var(--font-hand), "Marck Script", cursive; font-size: 17px; padding: 8px 22px; }
+.header { position: absolute; inset: 20px 0 auto; left: 50%; transform: translateX(-50%); display: flex; justify-content: space-between; align-items: center; z-index: 10; padding-inline: 100px; }
+.logo { position: relative; display: inline-block; }
+.logo img { display: block; width: 211px; height: auto; }
+.logo__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hand), "Marck Script", cursive;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--ink);
+}
 .header nav ul { display: flex; gap: 40px; font-weight: 500; }
 .header nav a { padding-block: 6px; border-bottom: 2px solid transparent; }
 .header nav a:hover { border-color: var(--ink); }
 
 /* ---------- Hero ---------- */
-.hero { height: clamp(620px, 62vw, 820px); overflow: hidden; }
+.hero { height: clamp(620px, 62vw, 820px); overflow: hidden; max-width: 1440px; margin-inline: auto; }
 .hero__band { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; pointer-events: none; }
 .hero__blob { position: absolute; left: 0; top: 12%; width: min(48%, 640px); height: auto; pointer-events: none; }
 .hero__name {
@@ -168,8 +180,19 @@ section { position: relative; }
 .hero__heart { left: 9%; top: 60%; transform:rotate(5deg) scaleX(-1);; }
 .hero__photo { position: absolute; right:70px; top: 14%; z-index: 4; transform: rotate(4deg); }
 /* Фото-стикер: меняй размер (width) здесь */
-.hero__photo-img { display: block; width: 538px; height: auto; }
-.hero__flower-img { position: absolute; left: 4px; top: 22px; width: 154px; height: auto; z-index: -1; transform: scaleX(-1); }
+.hero__photo-frame { position: relative; }
+.hero__photo-real {
+  position: absolute;
+  left: 45.94%;
+  top: 49.41%;
+  width: 67.52%;
+  height: 67.81%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(3deg);
+  z-index: 0;
+}
+.hero__photo-img { position: relative; z-index: 1; display: block; width: 538px; height: auto; }
+.hero__flower-img { position: absolute; left: 4px; top: 22px; width: 154px; height: auto; z-index: -1;  }
 .hero__heart--right { right: 19px; top: 243px; left: auto; transform: rotate(5deg); }
 
 /* ---------- Обо мне ---------- */
@@ -250,6 +273,7 @@ section { position: relative; }
   .hero__name { top: 90px; font-size: 64px; }
   .hero__role { top: 36%; left: 8%; }
   .hero__heart:not(.hero__heart--right) { display: none; }
+  .header { padding-inline: 24px; }
   .header nav ul { gap: 18px; font-size: 15px; }
 }
 @media (max-width: 560px) {

@@ -39,11 +39,19 @@ export default function Hero() {
           alt=""
           aria-hidden="true"
         />
-        <img
-          className="hero__photo-img"
-          src="/Стикеры%20для%20нежного%20скрапбукинга31%202.svg"
-          alt="Дарья Иванова"
-        />
+        <div className="hero__photo-frame">
+          <img
+            className="hero__photo-real"
+            src="/images/daria.jpg"
+            alt="Дарья Иванова"
+          />
+          <img
+            className="hero__photo-img"
+            src="/Стикеры%20для%20нежного%20скрапбукинга31%202.svg"
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
         <Tape color="yellow" className="hero__tape--yellow" />
         <Tape color="lilac" className="hero__tape--lilac-top" />
         <Tape color="lilac" className="hero__tape--lilac-bottom" />
