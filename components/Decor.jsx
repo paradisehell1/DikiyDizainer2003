@@ -1,23 +1,30 @@
 // Декоративные элементы: скотч, сердечко, цветок, заголовок-стикер, полароид.
 
 export function Tape({ color = "lilac", className = "", style }) {
-  return <span className={`tape tape--${color} ${className}`} style={style} aria-hidden="true" />;
+  const src =
+    color === "yellow"
+      ? "/Стикеры%20для%20нежного%20скрапбукинга41%204.svg"
+      : "/Стикеры%20для%20нежного%20скрапбукинга51%202.svg";
+  return (
+    <img
+      className={`tape-sticker ${className}`}
+      style={style}
+      src={src}
+      alt=""
+      aria-hidden="true"
+    />
+  );
 }
 
 export function Heart({ className = "", style }) {
   return (
-    <span className={`heart ${className}`} style={style} aria-hidden="true">
-      <svg viewBox="0 0 60 56" width="100%" height="100%">
-        <path
-          d="M30 50 C12 36 6 26 8 16 C10 7 22 5 30 16 C38 5 50 7 52 16 C54 26 48 36 30 50 Z"
-          fill="none"
-          stroke="#1f1a1a"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
+    <img
+      className={`heart ${className}`}
+      style={style}
+      src="/Стикеры%20для%20нежного%20скрапбукинга91%202.svg"
+      alt=""
+      aria-hidden="true"
+    />
   );
 }
 

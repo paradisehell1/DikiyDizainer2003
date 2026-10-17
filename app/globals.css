@@ -89,27 +89,36 @@ section { position: relative; }
 .label--lilac { background-color: var(--lilac); }
 .label--yellow { background-color: var(--yellow); }
 
-.tape {
-  position: absolute;
-  height: 38px;
-  z-index: 3;
-  opacity: 0.92;
-  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.28) 0 2px, transparent 2px 7px), repeating-linear-gradient(-45deg, rgba(255,255,255,.28) 0 2px, transparent 2px 7px);
-}
-.tape--lilac { background-color: #bfa3e6; }
-.tape--yellow { background-color: #f3c850; }
+.tape-sticker { position: absolute; height: auto; z-index: 3; }
+
+/* ---------- Скотчи-стикеры: геометрия (позиция, размер, поворот) ----------
+   Чтобы подкрутить скотч, меняй значения ниже. Для поворота добавь, например:
+   transform: rotate(8deg); */
+.hero__tape--yellow { top: 6px; left: 95px; width: 150px; transform: scaleY(-1); }
+.hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; }
+.hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; }
+.about__tape--lilac { top: 14px; left: -26px; width: 120px; }
+.about__tape--yellow { bottom: 20px; right: -24px; width: 120px; }
+.contacts__tape--lilac { top: -20px; right: -26px; width: 130px; }
+.contacts__tape--yellow { bottom: 40px; left: -30px; width: 130px; }
+.exp__tape--lilac { bottom: -10px; right: 20px; width: 150px; }
+.exp__tape--yellow { bottom: -8px; right: 16px; width: 110px; }
+
+/* ---------- Отражение (зеркало) стикеров ----------
+   Горизонтально:   transform: scaleX(-1);
+   Вертикально:     transform: scaleY(-1);
+   Оба сразу:       transform: scale(-1, -1);
+   Вместе с наклоном: transform: rotate(10deg) scaleX(-1); */
 
 .heart {
   position: absolute;
-  width: 66px;
-  height: 78px;
-  display: grid;
-  place-items: center;
-  padding: 14px 10px;
-  background: var(--paper-edge) var(--noise);
-  border-radius: 48% 52% 50% 50% / 55% 55% 45% 45%;
+  width: 89px;
+  height: auto;
   z-index: 3;
 }
+/* Наклон каждого сердца задаётся отдельно в его классе:
+   .hero__heart, .hero__heart--right, .about__heart, .contacts__heart,
+   .case__heart, .exp__heart, .exp__heart--top (transform: rotate). */
 .flower { position: absolute; width: 110px; z-index: 2; }
 
 .polaroid {
@@ -131,10 +140,8 @@ section { position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { height: clamp(620px, 62vw, 820px); overflow: hidden; }
-.hero__band { position: absolute; bottom: 0; }
-.hero__band--yellow { left: 0; width: 38%; height: 30%; background: var(--yellow) var(--noise); clip-path: polygon(0 0, 10% 10%, 30% 24%, 52% 48%, 70% 66%, 100% 82%, 100% 100%, 0 100%); }
-.hero__band--lilac { right: 0; width: 82%; height: 14%; background: var(--lilac) var(--noise); clip-path: polygon(0 100%, 8% 70%, 14% 40%, 22% 66%, 32% 50%, 44% 62%, 55% 30%, 66% 52%, 78% 20%, 90% 45%, 100% 6%, 100% 100%); }
-.hero__blob { position: absolute; left: 0; top: 12%; width: min(48%, 640px); height: 52%; background: var(--lilac) var(--noise); }
+.hero__band { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; pointer-events: none; }
+.hero__blob { position: absolute; left: 0; top: 12%; width: min(48%, 640px); height: auto; pointer-events: none; }
 .hero__name {
   position: absolute; left: clamp(24px, 6vw, 90px); top: 18%;
   font-family: var(--font-hand), "Marck Script", cursive; font-weight: 400;
@@ -143,24 +150,32 @@ section { position: relative; }
 }
 .hero__name + .hero__role { position: absolute; }
 .hero__role {
-  left: 17%; top: 54%; z-index: 3;
-  background: var(--yellow) var(--noise);
+  left: 13%; top: 42%; z-index: 3;
+  width: clamp(300px, 34vw, 460px);
+}
+.hero__role-img { display: block; width: 100%; height: auto; }
+.hero__role-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-hand), "Marck Script", cursive;
   font-size: clamp(30px, 4vw, 56px);
-  padding: 20px 44px;
-  transform: rotate(-4deg);
+  line-height: 1;
+  color: var(--ink);
 }
-.hero__heart { left: 11%; top: 69%; transform: rotate(-6deg); }
-.hero__photo { position: absolute; right: clamp(40px, 12%, 180px); top: 14%; width: clamp(280px, 30vw, 420px); z-index: 4; transform: rotate(4deg); }
-.hero__photo .polaroid { width: 100%; }
-.hero__photo-yellow { position: absolute; right: -80px; top: 90px; width: 200px; height: 280px; background: var(--yellow) var(--noise); z-index: -1; }
-.hero__flower { left: -50px; top: -60px; width: 120px; transform: rotate(-30deg); z-index: 5; }
-.hero__heart--right { right: -52px; top: 160px; left: auto; }
+.hero__heart { left: 9%; top: 60%; transform:rotate(5deg) scaleX(-1);; }
+.hero__photo { position: absolute; right:70px; top: 14%; z-index: 4; transform: rotate(4deg); }
+/* Фото-стикер: меняй размер (width) здесь */
+.hero__photo-img { display: block; width: 538px; height: auto; }
+.hero__flower-img { position: absolute; left: 4px; top: 22px; width: 154px; height: auto; z-index: -1; transform: scaleX(-1); }
+.hero__heart--right { right: 19px; top: 243px; left: auto; transform: rotate(5deg); }
 
 /* ---------- Обо мне ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; padding-block: 90px; }
 .about__photo { width: min(100%, 340px); justify-self: start; transform: rotate(-4deg); margin-left: 24px; }
-.about__heart { left: 18px; bottom: -32px; }
+.about__heart { left: 18px; bottom: -32px; transform: rotate(-12deg); }
 .about__text { position: relative; }
 .about__label { margin-left: -18px; transform: translateY(26px); }
 .about__text .paper { padding: 70px 56px 56px; font-size: 16px; filter: none; }
@@ -188,8 +203,8 @@ section { position: relative; }
 .brand--guap { color: #0f5ea8; }
 .brand--loft { color: #222; }
 .brand--ya { color: #111; }
-.exp__heart { left: -10px; bottom: -22px; }
-.exp__heart--top { right: -4px; top: -24px; }
+.exp__heart { left: -10px; bottom: -22px; transform: rotate(-8deg); }
+.exp__heart--top { right: -4px; top: -24px; transform: rotate(15deg); }
 .exp__flower { left: -64px; top: -50px; transform: rotate(-12deg); }
 .exp__col--work .paper p { font-size: 16px; }
 
@@ -205,7 +220,7 @@ section { position: relative; }
 .case h3 { font-size: 17px; font-weight: 700; line-height: 1.35; max-width: 24ch; }
 .case__link { margin-top: 14px; color: var(--lilac-deep); font-weight: 600; width: max-content; }
 .case__link:hover { text-decoration: underline; text-underline-offset: 4px; }
-.case__heart { width: 30px; height: 36px; padding: 6px 4px; right: 12px; top: 6px; }
+.case__heart { width: 30px; right: 12px; top: 6px; transform: rotate(-15deg); }
 
 /* ---------- Контакты ---------- */
 .contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding-block: 40px 120px; align-items: center; }
@@ -217,7 +232,7 @@ section { position: relative; }
 .contacts li a:hover span { text-decoration: underline; text-underline-offset: 4px; }
 .contacts__note { position: absolute; left: 24%; bottom: -34px; background: var(--lilac) var(--noise); font-family: var(--font-hand), "Marck Script", cursive; font-size: 20px; line-height: 1.2; padding: 26px 40px; transform: rotate(-4deg); max-width: 300px; text-align: center; }
 .contacts__photo { width: min(100%, 420px); justify-self: end; transform: rotate(4deg); }
-.contacts__heart { right: -10px; bottom: -34px; }
+.contacts__heart { right: -10px; bottom: -34px; transform: rotate(10deg); }
 
 /* ---------- Футер ---------- */
 .footer { text-align: center; padding-bottom: 28px; }
@@ -229,8 +244,9 @@ section { position: relative; }
   .cases__grid { grid-template-columns: 1fr; }
   .contacts__note { position: relative; left: auto; bottom: auto; margin: -20px auto 0; }
   .hero { height: 760px; }
-  .hero__photo { top: auto; bottom: 90px; right: 50%; transform: translateX(50%) rotate(4deg); width: 260px; }
-  .hero__blob { width: 90%; height: 34%; top: 80px; }
+  .hero__photo { top: auto; bottom: 90px; right: 50%; transform: translateX(50%) rotate(4deg); }
+  .hero__photo-img { width: 260px; }
+  .hero__blob { width: 90%; height: auto; top: 80px; }
   .hero__name { top: 90px; font-size: 64px; }
   .hero__role { top: 36%; left: 8%; }
   .hero__heart:not(.hero__heart--right) { display: none; }

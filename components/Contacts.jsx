@@ -47,8 +47,8 @@ export default function Contacts() {
       </div>
 
       <Polaroid className="contacts__photo" src="/images/contact.jpg" alt="">
-        <Tape color="lilac" style={{ top: -20, right: -26, width: 130, transform: "rotate(32deg)" }} />
-        <Tape color="yellow" style={{ bottom: 40, left: -30, width: 130, transform: "rotate(-4deg)" }} />
+        <Tape color="lilac" className="contacts__tape--lilac" />
+        <Tape color="yellow" className="contacts__tape--yellow" />
         <Heart className="contacts__heart" />
       </Polaroid>
     </section>

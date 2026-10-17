@@ -10,8 +10,8 @@ export default function About() {
   return (
     <section className="about container" id="about">
       <Polaroid className="about__photo" src="/images/about.jpg" alt="Дарья за работой">
-        <Tape color="lilac" style={{ top: 14, left: -26, width: 120, transform: "rotate(-38deg)" }} />
-        <Tape color="yellow" style={{ bottom: 20, right: -24, width: 120, transform: "rotate(-8deg)" }} />
+        <Tape color="lilac" className="about__tape--lilac" />
+        <Tape color="yellow" className="about__tape--yellow" />
         <Heart className="about__heart" />
       </Polaroid>
 

@@ -27,7 +27,7 @@ export default function Experience() {
           <p>Курс «Дизайнер интерфейсов» (9 месяцев)</p>
 
           <Heart className="exp__heart" />
-          <Tape color="lilac" style={{ bottom: -10, right: 20, width: 150, transform: "rotate(-3deg)" }} />
+          <Tape color="lilac" className="exp__tape--lilac" />
         </div>
       </div>
 
@@ -50,7 +50,7 @@ export default function Experience() {
             <br />
             Вела проекты от постановки задач до запуска, взаимодействуя с заказчиками и разработчиками
           </p>
-          <Tape color="yellow" style={{ bottom: -8, right: 16, width: 110, transform: "rotate(-8deg)" }} />
+          <Tape color="yellow" className="exp__tape--yellow" />
         </div>
       </div>
     </section>
