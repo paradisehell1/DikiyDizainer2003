@@ -101,8 +101,8 @@ section { position: relative; }
 .about__tape--yellow { bottom: 43px; right: 41px; width: 130px; transform: rotate(-25deg); }
 .contacts__tape--lilac { top: -20px; right: -26px; width: 130px; transform: rotate(0deg); }
 .contacts__tape--yellow { bottom: 40px; left: -30px; width: 130px; transform: rotate(0deg); }
-.exp__tape--lilac { bottom: -10px; right: 20px; width: 150px; transform: rotate(0deg); }
-.exp__tape--yellow { bottom: -8px; right: 16px; width: 110px; transform: rotate(0deg); }
+.exp__tape--lilac { bottom: -10px; right: 20px; width: 180px; transform: rotate(0deg); }
+.exp__tape--yellow { bottom: -22px; right: 21px; width: 140px; transform: rotate(-30deg); }
 
 /* ---------- Отражение (зеркало) стикеров ----------
    Горизонтально:   transform: scaleX(-1);
@@ -290,25 +290,193 @@ section { position: relative; }
 /* ---------- Образование / опыт ---------- */
 .exp { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-block: 40px 110px; align-items: start; }
 .exp__col { position: relative; }
-.exp__label { margin-bottom: -26px; margin-left: 0; }
-.exp__col--work .exp__label { margin-left: 6px; }
-.exp__col .paper { padding: 64px 40px 80px; min-height: 480px; }
-.exp__col--edu .paper { min-height: 540px; }
+.exp__label {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: -125px;
+  left: 8px;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+  width: fit-content;
+  margin-bottom: -26px;   /* наезд на бумагу */
+  z-index: 2;
+}
+/* Размер самой SVG меняй здесь (width) */
+.exp__label-img { display: block; width: 400px; height: auto; }
+.exp__label-text {
+  position: absolute;
+  inset: 6.5% 2.9% 12.9% 2.9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hand), "Marck Script", cursive;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--ink);
+}
+.exp__role {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: -154px;
+  left: 0;
+  width: fit-content;
+  margin-bottom: -26px;   /* наезд на бумагу */
+  z-index: 2;
+}
+/* Размер самой SVG меняй здесь (width) */
+.exp__role-img {
+  display: block;
+  width: 398px;
+  height: auto;
+  /* Поворот самой SVG (стикер без текста): плюс — по часовой, минус — против */
+  transform: rotate(5deg);
+}
+.exp__role-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hand), "Marck Script", cursive;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--ink);
+}
+.exp__paper {
+  position: relative;
+  width: fit-content;
+}
+/* Общее для SVG-бумаги */
+.exp__paper-img { display: block; height: auto; }
+/* Горизонтальное отражение бумаги (правая колонка) */
+.exp__paper-img--flip { transform: scaleX(-1); }
+
+/* --- Бумага «Образование» (левая) — двигай/меняй независимо --- */
+.exp__paper--edu {
+  /* Двигай всю бумагу (SVG + текст вместе): top — вниз, left — вправо */
+  top: -230px;
+  left: 0;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+}
+.exp__paper--edu .exp__paper-img {
+  width: 722px;
+  /* Двигай только SVG (текст остаётся на месте): top — вниз, left — вправо */
+  position: relative;
+  top: 0;
+  left: -34px;
+}
+
+/* --- Бумага «Опыт работы» (правая) — двигай/меняй независимо --- */
+.exp__paper--work {
+  /* Двигай всю бумагу (SVG + текст вместе): top — вниз, left — вправо */
+  top: -187px;
+  left: 0;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+}
+.exp__paper--work .exp__paper-img {
+  width: 722px;
+  /* Двигай только SVG (текст остаётся на месте): top — вниз, left — вправо */
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* Текст поверх бумаги: поле бумаги занимает почти весь SVG (края ~1-2%) */
+.exp__paper-content {
+  position: absolute;
+  inset: 1% 2% 2% 2%;
+  padding: 70px 38px 70px;
+}
 .exp h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
 .exp h4 { font-size: 17px; font-weight: 600; margin: 18px 0 6px; }
 .exp .year { display: flex; align-items: center; gap: 14px; font-size: 18px; margin: 22px 0 12px; }
 .exp .year:first-of-type { margin-top: 0; }
 .exp .strong { font-weight: 600; margin-bottom: 14px; }
 .exp__col--work h3:nth-of-type(2) { margin-top: 28px; }
-.exp__sub { font-size: 26px; padding: 8px 28px; margin: 28px 0 18px; background-color: var(--lilac); }
+/* Стикер «Дополнительно» с текстом поверх */
+.exp__sub {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: -25px;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+  width: fit-content;
+  
+}
+/* Размер самой SVG меняй здесь (width) */
+.exp__sub-img { display: block; width: 200px; height: auto; }
+.exp__sub-text {
+  position: absolute;
+  inset: 7.5% 5% 15% 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hand), "Marck Script", cursive;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink);
+}
 .brand { font-family: var(--font-sans); font-weight: 800; font-size: 15px; }
 .brand--guap { color: #0f5ea8; }
 .brand--loft { color: #222; }
 .brand--ya { color: #111; }
-.exp__heart { left: -10px; bottom: -22px; transform: rotate(-8deg); }
-.exp__heart--top { right: -4px; top: -24px; transform: rotate(15deg); }
-.exp__flower { left: -64px; top: -50px; transform: rotate(-12deg); }
-.exp__col--work .paper p { font-size: 16px; }
+/* Логотип ГУАП вместо текста */
+.brand--guap-img {
+  position: relative;
+  /* Двигай попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: 0;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+  /* Размер меняй здесь (width) */
+  width: 100px;
+  height: auto;
+  display: block;
+}
+/* Логотип Loftschool вместо текста */
+.brand--loft-img {
+  position: relative;
+  /* Двигай попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: 0;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+  /* Размер меняй здесь (width) */
+  width: 120px;
+  height: auto;
+  display: block;
+}
+/* Логотип Яндекс.Практикум вместо текста */
+.brand--ya-img {
+  position: relative;
+  /* Двигай попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: 0;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(0deg);
+  /* Размер меняй здесь (width) */
+  width: 130px;
+  height: auto;
+  display: block;
+}
+.exp__heart { left: -3px; bottom: -3px; transform: rotate(-26deg); }
+.exp__heart--top { left: 567px; top: -113px; transform: rotate(1deg); }
+.exp__flower-img {
+  position: absolute;
+  /* Двигай попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  left: -94px;
+  top: -100px;
+  /* Поворот: плюс — по часовой, минус — против */
+  transform: rotate(6deg);
+  /* Размер меняй здесь (width) */
+  width: 200px;
+  height: auto;
+  z-index: -1;   /* под бумагой и текстом */
+}
+.exp__col--work .exp__paper-content p { font-size: 16px; }
 
 /* ---------- Кейсы ---------- */
 .cases { padding-block: 40px 110px; }
@@ -348,6 +516,12 @@ section { position: relative; }
   .about__paper-img { width: 100%; }
   .about__skills { width: 100%; margin-left: 0; margin-top: 16px; }
   .about__skills-img { width: 100%; }
+  .exp__role-img { width: 260px; }
+  .exp__label-img { width: 280px; }
+  .exp__paper { width: 100%; }
+  .exp__paper-img,
+  .exp__paper--edu .exp__paper-img,
+  .exp__paper--work .exp__paper-img { width: 100%; }
   .cases__grid { grid-template-columns: 1fr; }
   .contacts__note { position: relative; left: auto; bottom: auto; margin: -20px auto 0; }
   .hero { height: 760px; }
@@ -361,7 +535,8 @@ section { position: relative; }
   .header nav ul { gap: 18px; font-size: 15px; }
 }
 @media (max-width: 560px) {
-  .paper, .exp__col .paper, .paper--plain { padding: 56px 24px 56px; }
+  .paper, .paper--plain { padding: 56px 24px 56px; }
+  .exp__paper-content { padding: 44px 22px 56px; }
   .cases__head { flex-direction: column; align-items: flex-start; gap: 18px; }
   .logo { display: none; }
   .header { justify-content: flex-end; }
