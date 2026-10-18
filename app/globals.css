@@ -92,17 +92,17 @@ section { position: relative; }
 .tape-sticker { position: absolute; height: auto; z-index: 3; }
 
 /* ---------- Скотчи-стикеры: геометрия (позиция, размер, поворот) ----------
-   Чтобы подкрутить скотч, меняй значения ниже. Для поворота добавь, например:
-   transform: rotate(8deg); */
-.hero__tape--yellow { top: 6px; left: 95px; width: 150px; }
-.hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; }
-.hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; }
-.about__tape--lilac { top: 14px; left: -26px; width: 120px; }
-.about__tape--yellow { bottom: 20px; right: -24px; width: 120px; }
-.contacts__tape--lilac { top: -20px; right: -26px; width: 130px; }
-.contacts__tape--yellow { bottom: 40px; left: -30px; width: 130px; }
-.exp__tape--lilac { bottom: -10px; right: 20px; width: 150px; }
-.exp__tape--yellow { bottom: -8px; right: 16px; width: 110px; }
+   Каждый скотч крутится своим transform: rotate(...) ниже.
+   Положительный угол — по часовой, отрицательный — против. */
+.hero__tape--yellow { top: 6px; left: 95px; width: 150px; transform: rotate(0deg); }
+.hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; transform: rotate(0deg); }
+.hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; transform: rotate(0deg); }
+.about__tape--lilac { top: 59px; left: 21px; width: 160px; transform: rotate(-25deg); }
+.about__tape--yellow { bottom: 43px; right: 41px; width: 130px; transform: rotate(-25deg); }
+.contacts__tape--lilac { top: -20px; right: -26px; width: 130px; transform: rotate(0deg); }
+.contacts__tape--yellow { bottom: 40px; left: -30px; width: 130px; transform: rotate(0deg); }
+.exp__tape--lilac { bottom: -10px; right: 20px; width: 150px; transform: rotate(0deg); }
+.exp__tape--yellow { bottom: -8px; right: 16px; width: 110px; transform: rotate(0deg); }
 
 /* ---------- Отражение (зеркало) стикеров ----------
    Горизонтально:   transform: scaleX(-1);
@@ -197,16 +197,95 @@ section { position: relative; }
 
 /* ---------- Обо мне ---------- */
 .about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; padding-block: 90px; }
-.about__photo { width: min(100%, 340px); justify-self: start; transform: rotate(-4deg); margin-left: 24px; }
-.about__heart { left: 18px; bottom: -32px; transform: rotate(-12deg); }
-.about__text { position: relative; }
-.about__label { margin-left: -18px; transform: translateY(26px); }
-.about__text .paper { padding: 70px 56px 56px; font-size: 16px; filter: none; }
-.about__text .paper p { max-width: 36ch; margin-left: 16px; }
-.tools { display: flex; justify-content: flex-end; gap: 16px; background: var(--yellow) var(--noise); width: max-content; margin: -20px 0 0 auto; padding: 22px 42px; position: relative; z-index: 2; }
-.tools li { width: 46px; height: 46px; display: grid; place-items: center; border: 2px solid var(--ink); border-radius: 50%; font-weight: 700; font-size: 17px; }
-.tools li:nth-child(2) { border-radius: 10px; }
-.tools li:nth-child(3) { border-radius: 10px; }
+.about__photo {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: -104px;
+  left: 0;
+  width: fit-content;
+  justify-self: start;
+  transform: rotate(-4deg);
+  margin-left: 24px;
+}
+.about__photo-frame { position: relative; }
+.about__photo-real {
+  position: absolute;
+  left: 49.99%;
+  top: 49.38%;
+  width: 81.39%;
+  height: 84.63%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  z-index: 0;
+}
+/* Фото-стикер «Обо мне»: размер самой SVG меняй здесь (width) */
+.about__photo-img { position: relative; z-index: 1; display: block; width: 503px; height: auto; }
+.about__heart { left: 96px; bottom: 20px; transform: rotate(-21deg); }
+.about__text {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: -84px;
+  left: -29px;
+}
+.about__heading {
+  position: relative;
+  display: inline-block;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 48px;
+  left: 22px;
+  margin-left: -18px;
+  transform: translateY(26px);
+  z-index: 2;
+}
+/* Заголовок-стикер: размер самой SVG меняй здесь (width) */
+.about__heading-img { display: block; width: 260px; height: auto; }
+.about__heading-text {
+  position: absolute;
+  inset: 0 0 8px 0; /* бумага в SVG чуть выше центра — текст ложится по её центру */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-hand), "Marck Script", cursive;
+  font-weight: 400;
+  font-size: clamp(28px, 2.6vw, 38px);
+  line-height: 1;
+  color: var(--ink);
+}
+.about__paper {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: 0;
+  /* Поворот бумаги: положительный — по часовой, отрицательный — против */
+  transform: rotate(0deg);
+  width: fit-content;
+}
+/* Размер самой SVG меняй здесь (width) */
+.about__paper-img { display: block; width: 680px; height: auto; }
+.about__paper-text {
+  position: absolute;
+  top: 14%;
+  right: 10%;
+  bottom: 16%;
+  left: 10%;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.about__skills {
+  position: relative;
+  /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: -72px;
+  left: -28px;
+  /* Поворот: положительный — по часовой, отрицательный — против */
+  transform: rotate(0deg);
+  width: fit-content;
+  margin-left: auto;   /* прижать к правому краю */
+  margin-top: -20px;   /* наезд на бумагу */
+  z-index: 2;
+}
+/* Размер самой SVG меняй здесь (width) */
+.about__skills-img { display: block; width: 340px; height: auto; }
 
 /* ---------- Образование / опыт ---------- */
 .exp { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-block: 40px 110px; align-items: start; }
@@ -264,6 +343,11 @@ section { position: relative; }
 @media (max-width: 960px) {
   .about, .exp, .contacts { grid-template-columns: 1fr; gap: 48px; }
   .about__photo, .contacts__photo { justify-self: center; margin-left: 0; }
+  .about__photo-img { width: 260px; }
+  .about__paper { width: 100%; }
+  .about__paper-img { width: 100%; }
+  .about__skills { width: 100%; margin-left: 0; margin-top: 16px; }
+  .about__skills-img { width: 100%; }
   .cases__grid { grid-template-columns: 1fr; }
   .contacts__note { position: relative; left: auto; bottom: auto; margin: -20px auto 0; }
   .hero { height: 760px; }

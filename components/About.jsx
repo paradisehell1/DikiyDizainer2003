@@ -1,24 +1,26 @@
-import { Heart, Label, Polaroid, Tape } from "./Decor";
-
-const tools = [
-  { name: "Figma", mark: "F" },
-  { name: "Adobe Illustrator", mark: "Ai" },
-  { name: "Adobe Photoshop", mark: "Ps" },
-];
+import { Heart, Tape } from "./Decor";
 
 export default function About() {
   return (
     <section className="about container" id="about">
-      <Polaroid className="about__photo" src="/images/about.jpg" alt="Дарья за работой">
+      <div className="about__photo">
+        <div className="about__photo-frame">
+          <img className="about__photo-real" src="/images/about.jpg" alt="Дарья за работой" />
+          <img className="about__photo-img" src="/Стикеры%20для%20нежного%20скрапбукинга311%203.svg" alt="" aria-hidden="true" />
+        </div>
         <Tape color="lilac" className="about__tape--lilac" />
         <Tape color="yellow" className="about__tape--yellow" />
         <Heart className="about__heart" />
-      </Polaroid>
+      </div>
 
       <div className="about__text">
-        <Label variant={1} className="about__label">Обо мне</Label>
-        <div className="paper tear tear--5">
-          <p>
+        <div className="about__heading">
+          <img className="about__heading-img" src="/Heading.svg" alt="" aria-hidden="true" />
+          <span className="about__heading-text">Обо мне</span>
+        </div>
+        <div className="about__paper">
+          <img className="about__paper-img" src="/Description%20(1).svg" alt="" aria-hidden="true" />
+          <p className="about__paper-text">
             Привет! Меня зовут Дарья, я UX/UI дизайнер уровня junior+.
             <br />
             Активно развиваюсь в сфере UX/UI дизайна: создаю удобные и понятные продукты. Мне важно,
@@ -26,13 +28,9 @@ export default function About() {
             Стремлюсь к профессиональному росту и интересным проектам
           </p>
         </div>
-        <ul className="tools tear tear--6" aria-label="Инструменты">
-          {tools.map((t) => (
-            <li key={t.name} title={t.name} aria-label={t.name}>
-              {t.mark}
-            </li>
-          ))}
-        </ul>
+        <div className="about__skills">
+          <img className="about__skills-img" src="/skills.svg" alt="Инструменты: Figma, Adobe Illustrator, Adobe Photoshop" />
+        </div>
       </div>
     </section>
   );
