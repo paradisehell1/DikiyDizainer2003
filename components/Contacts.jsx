@@ -1,4 +1,4 @@
-import { Heart, Label, Polaroid, Tape } from "./Decor";
+import { Heart, Tape } from "./Decor";
 
 const Phone = () => (
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
@@ -28,29 +28,41 @@ export default function Contacts() {
   return (
     <section className="contacts container" id="contacts">
       <div className="contacts__left">
-        <Label variant={3} className="contacts__label">Контакты</Label>
-        <div className="paper paper--plain tear tear--10">
-          <ul>
-            {items.map((i) => (
-              <li key={i.text}>
-                <a href={i.href}>
-                  {i.icon}
-                  <span>{i.text}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="contacts__heading">
+          <img className="contacts__heading-img" src="/Heading_contacts.svg" alt="" aria-hidden="true" />
+          <span className="contacts__heading-text">Контакты</span>
         </div>
-        <p className="contacts__note tear tear--4">
-          <span>Давайте превратим идеи в решения</span>
-        </p>
+        <div className="contacts__paper">
+          <img className="contacts__paper-img" src="/Description_about.svg" alt="" aria-hidden="true" />
+          <div className="contacts__paper-content">
+            <ul>
+              {items.map((i) => (
+                <li key={i.text}>
+                  <a href={i.href}>
+                    {i.icon}
+                    <span>{i.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <Polaroid className="contacts__photo" src="/images/contact.jpg" alt="">
+      <div className="contacts__note">
+        <img className="contacts__note-img" src="/decor.svg" alt="" aria-hidden="true" />
+        <span className="contacts__note-text">Давайте превратим идеи в решения</span>
+      </div>
+
+      <div className="contacts__photo">
+        <div className="contacts__photo-frame">
+          <img className="contacts__photo-real" src="/images/contact.jpg" alt="" />
+          <img className="contacts__photo-img" src="/Стикеры%20для%20нежного%20скрапбукинга311%203.svg" alt="" aria-hidden="true" />
+        </div>
         <Tape color="lilac" className="contacts__tape--lilac" />
         <Tape color="yellow" className="contacts__tape--yellow" />
         <Heart className="contacts__heart" />
-      </Polaroid>
+      </div>
     </section>
   );
 }
