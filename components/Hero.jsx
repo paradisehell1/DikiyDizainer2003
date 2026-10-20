@@ -5,14 +5,14 @@ export default function Hero() {
     <section className="hero" id="top">
       <img
         className="hero__band"
-        src="/Стикеры%20для%20нежного%20скрапбукинга81%201.svg"
+        src="/hero_decore.svg"
         alt=""
         aria-hidden="true"
       />
 
       <img
         className="hero__blob"
-        src="/Стикеры-для-нежного-скрапбукинга11%202.svg"
+        src="/purple_decore.svg"
         alt=""
         aria-hidden="true"
       />
@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="hero__role">
         <img
           className="hero__role-img"
-          src="/Description.svg"
+          src="/heading_yellow.svg"
           alt=""
           aria-hidden="true"
         />
@@ -35,7 +35,7 @@ export default function Hero() {
       <div className="hero__photo">
         <img
           className="hero__flower-img"
-          src="/Стикеры%20для%20нежного%20скрапбукинга61%202.svg"
+          src="/flower.svg"
           alt=""
           aria-hidden="true"
         />

@@ -21,7 +21,7 @@ export function Heart({ className = "", style }) {
     <img
       className={`heart ${className}`}
       style={style}
-      src="/Стикеры%20для%20нежного%20скрапбукинга91%202.svg"
+      src="/heart.svg"
       alt=""
       aria-hidden="true"
     />

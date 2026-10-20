@@ -94,7 +94,10 @@ section { position: relative; }
 /* ---------- Скотчи-стикеры: геометрия (позиция, размер, поворот) ----------
    Каждый скотч крутится своим transform: rotate(...) ниже.
    Положительный угол — по часовой, отрицательный — против. */
-.hero__tape--yellow { top: 6px; left: 95px; width: 150px; transform: rotate(0deg); /* Угол поворота жёлтого скотча: меняй число, напр. -12deg или 15deg */ }
+.hero__tape--yellow { top: -20px;
+    left: 65px;
+    width: 150px;
+    transform: rotate(10deg); /* Угол поворота жёлтого скотча: меняй число, напр. -12deg или 15deg */ }
 .hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; transform: rotate(0deg); }
 .hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; transform: rotate(0deg); }
 .about__tape--lilac { top: 59px; left: 21px; width: 160px; transform: rotate(-25deg); }
@@ -152,8 +155,8 @@ section { position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { height: clamp(620px, 62vw, 820px); overflow: hidden; max-width: 1440px; margin-inline: auto; }
-.hero__band { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; pointer-events: none; }
-.hero__blob { position: absolute; left: 0; top: 12%; width: min(48%, 640px); height: auto; pointer-events: none; }
+.hero__band { position: absolute; left: 0; bottom: 0; width: 1440px; /* фиксированная ширина ленты */ height: auto; pointer-events: none; }
+.hero__blob { position: absolute; left: 0; top: 166px; width: 640px; height: 408px; pointer-events: none; }
 .hero__name {
   position: absolute; left: clamp(24px, 6vw, 90px); top: 18%;
   font-family: var(--font-hand), "Marck Script", cursive; font-weight: 400;
@@ -164,8 +167,11 @@ section { position: relative; }
 .hero__role {
   left: 13%; top: 42%; z-index: 3;
   width: clamp(300px, 34vw, 460px);
+  transform: rotate(-5deg);
 }
-.hero__role-img { display: block; width: 100%; height: auto; }
+.hero__role-img { display: block;
+    width: 474px;
+    height: 134px; /* Угол поворота подписи-стикера: меняй число, напр. -4deg или 5deg */ }
 .hero__role-text {
   position: absolute;
   inset: 0;
@@ -195,16 +201,22 @@ section { position: relative; }
    width — размер (height: auto сохраняет пропорции),
    top/left — координаты (минус двигает вверх/влево). */
 .hero__photo-img {
-    position: absolute;
+        position: absolute;
     top: 16px;
     left: 20px;
-    width: 535px;
+    width: 500px;
     height: auto;
     z-index: 1;
     transform: rotate(10deg);
  /* Угол поворота рамки: меняй число, напр. -3deg или 6deg */
 }
-.hero__flower-img { position: absolute; left: 4px; top: 22px; width: 154px; height: auto; z-index: -1;  }
+.hero__flower-img {     position: absolute;
+    left: -40px;
+    top: 32px;
+    width: 154px;
+    height: 220px;
+    z-index: -1;
+    transform: rotate(-32deg);; /* Угол поворота цветка: меняй число, напр. -8deg или 10deg */ }
 .hero__heart--right { right: 19px; top: 243px; left: auto; transform: rotate(5deg); }
 
 /* ---------- Обо мне ---------- */
