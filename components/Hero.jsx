@@ -47,7 +47,7 @@ export default function Hero() {
           />
           <img
             className="hero__photo-img"
-            src="/Стикеры%20для%20нежного%20скрапбукинга31%202.svg"
+            src="/frame_photo_main.svg"
             alt=""
             aria-hidden="true"
           />

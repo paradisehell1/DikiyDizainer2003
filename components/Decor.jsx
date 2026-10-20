@@ -3,7 +3,7 @@
 export function Tape({ color = "lilac", className = "", style }) {
   const src =
     color === "yellow"
-      ? "/Стикеры%20для%20нежного%20скрапбукинга41%204.svg"
+      ? "/yellow_decore.svg"
       : "/Стикеры%20для%20нежного%20скрапбукинга51%202.svg";
   return (
     <img
