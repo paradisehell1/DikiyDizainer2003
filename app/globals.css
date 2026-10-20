@@ -520,6 +520,24 @@ section { position: relative; }
 .btn-outline { border: 1.5px solid var(--ink); border-radius: 999px; padding: 14px 44px; font-weight: 500; transition: background .2s, color .2s; }
 .btn-outline:hover { background: var(--ink); color: var(--bg); }
 .cases__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.cases__more { margin-top: 34px; display: flex; justify-content: center; }
+.cases__dots {
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.cases__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background .2s;
+}
+.cases__dot--active { background: var(--ink); }
 /* Каждая SVG-«бумажка»: размер (width/height) и положение (top/left, transform)
    задаются индивидуально через style в components/Cases.jsx */
 .cases__item {
@@ -738,10 +756,89 @@ section { position: relative; }
   .header nav ul { gap: 18px; font-size: 15px; }
 }
 @media (max-width: 560px) {
-  .paper { padding: 56px 24px 56px; }
-  .contacts__paper-content { padding: 56px 24px 56px; }
-  .exp__paper-content { padding: 44px 22px 56px; }
+  /* Мобилка рассчитана на 380px: отступы по бокам 32px */
+  .container { width: min(1440px, 100% - 64px); }
+  .paper { padding: 56px 32px 56px; }
+  .contacts__paper-content { padding: 56px 32px 56px; }
+  .exp__paper-content { padding: 44px 32px 56px; }
   .cases__head { flex-direction: column; align-items: flex-start; gap: 18px; }
   .logo { display: none; }
-  .header { justify-content: flex-end; }
+  .header { justify-content: flex-end; padding-inline: 0; }
+  .hero__name { left: 32px; }
+  /* Фото-блоки на мобилке не нужны — остаётся только фото в хиро */
+  .about__photo,
+  .contacts__photo { display: none; }
+
+  /* Кейсы — горизонтальный список с прокруткой */
+  .cases__grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .cases__grid::-webkit-scrollbar { display: none; }
+  .cases__item { flex: 0 0 80%; scroll-snap-align: start; }
+  .cases__dots { display: flex; }
+
+  /* Кнопка «Смотреть все кейсы» — на всю ширину, высота 40px */
+  .cases__more .btn-outline {
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== SVG-элементы: размер / позиция (попиксельно) / поворот =====
+     У каждого стикера: width — размер, top/left (или right/bottom) — позиция
+     (минус двигает вверх/влево), transform: rotate(...) — поворот
+     (плюс — по часовой, минус — против). Значения — стартовые, крути по месту. */
+
+  /* --- Hero --- */
+  .hero__band { width: 100%; left: 0; bottom: 0; transform: rotate(0deg); }
+  .hero__blob { width: 300px; top: 90px; left: 0; transform: rotate(0deg); }
+  .hero__role { top: 36%; left: 32px; transform: rotate(0deg); }
+  .hero__role-img { position: relative; width: 300px; top: 0; left: 0; transform: rotate(0deg); }
+  .hero__flower-img { width: 70px; top: 22px; left: 4px; transform: rotate(0deg); }
+  .hero__photo-frame { position: relative; width: 260px; top: 0; left: 0; transform: rotate(0deg); }
+  .hero__photo-img { width: 260px; top: 8px; left: 10px; transform: rotate(10deg); }
+  .hero__tape--yellow { width: 70px; top: 6px; left: 48px; transform: rotate(0deg); }
+  .hero__tape--lilac-top { width: 80px; top: 10px; right: 60px; transform: rotate(0deg); }
+  .hero__tape--lilac-bottom { width: 80px; bottom: 18px; right: 64px; transform: rotate(0deg); }
+  .hero__heart--right { width: 40px; top: 240px; right: 12px; transform: rotate(5deg); }
+
+  /* --- Обо мне --- */
+  .about__heading-img { position: relative; width: 220px; top: 0; left: 0; transform: rotate(0deg); }
+  .about__skills-img { position: relative; width: 100%; top: 0; left: 0; transform: rotate(0deg); }
+  .about__tape--lilac { width: 70px; top: 30px; left: 10px; transform: rotate(-25deg); }
+  .about__tape--yellow { width: 60px; bottom: 20px; right: 20px; transform: rotate(-25deg); }
+  .about__heart { width: 40px; left: 60px; bottom: 12px; transform: rotate(-21deg); }
+
+  /* --- Опыт / образование --- */
+  .exp__role-img { position: relative; width: 260px; top: 0; left: 0; transform: rotate(5deg); }
+  .exp__label-img { position: relative; width: 280px; top: 0; left: 0; transform: rotate(0deg); }
+  .exp__sub-img { position: relative; width: 120px; top: 0; left: 0; transform: rotate(0deg); }
+  .brand--guap-img { position: relative; width: 60px; top: 0; left: 0; transform: rotate(0deg); }
+  .brand--loft-img { position: relative; width: 70px; top: 0; left: 0; transform: rotate(0deg); }
+  .brand--ya-img { position: relative; width: 80px; top: 0; left: 0; transform: rotate(0deg); }
+  .exp__flower-img { width: 90px; top: -40px; left: -20px; transform: rotate(6deg); }
+  .exp__tape--lilac { width: 70px; bottom: -6px; right: 10px; transform: rotate(0deg); }
+  .exp__tape--yellow { width: 60px; bottom: -12px; right: 10px; transform: rotate(-30deg); }
+  .exp__heart { width: 40px; left: -2px; bottom: -2px; transform: rotate(-26deg); }
+  .exp__heart--top { width: 40px; left: auto; right: 8px; top: -40px; transform: rotate(1deg); }
+
+  /* --- Кейсы --- */
+  .cases__heading-img { position: relative; width: 220px; top: 0; left: 0; transform: rotate(0deg); }
+  .cases__item-bg { position: relative; width: 100%; top: 0; left: 0; transform: rotate(0deg); }
+
+  /* --- Контакты --- */
+  .contacts__heading-img { position: relative; width: 220px; top: 0; left: 0; transform: rotate(0deg); }
+  .contacts__note-img { position: relative; width: 260px; top: 0; left: 0; transform: rotate(0deg); }
+  .contacts__tape--lilac { width: 70px; top: 30px; right: 18px; transform: rotate(46deg); }
+  .contacts__tape--yellow { width: 70px; bottom: 18px; left: 20px; transform: rotate(0deg); }
+  .contacts__heart { width: 40px; right: 36px; bottom: 16px; transform: rotate(10deg); }
 }
