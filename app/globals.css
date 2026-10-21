@@ -94,12 +94,10 @@ section { position: relative; }
 /* ---------- Скотчи-стикеры: геометрия (позиция, размер, поворот) ----------
    Каждый скотч крутится своим transform: rotate(...) ниже.
    Положительный угол — по часовой, отрицательный — против. */
-.hero__tape--yellow { top: -20px;
-    left: 65px;
+.hero__tape--yellow { top: 20px;  /* Отступ от верхнего края экрана: меняй число */
+    right: 20px;  /* Отступ от правого края экрана: меняй число */
     width: 150px;
     transform: rotate(10deg); /* Угол поворота жёлтого скотча: меняй число, напр. -12deg или 15deg */ }
-.hero__tape--lilac-top { top: 16px; right: 120px; width: 180px; z-index: -1; transform: rotate(0deg); }
-.hero__tape--lilac-bottom { bottom: 35px; right: 132px; width: 180px; opacity: 0.7; transform: rotate(0deg); }
 .about__tape--lilac { top: 59px; left: 21px; width: 160px; transform: rotate(-25deg); }
 .about__tape--yellow { bottom: 43px; right: 41px; width: 130px; transform: rotate(-25deg); }
 .contacts__tape--lilac { top: 58px; right: 35px; width: 160px; transform: rotate(46deg); }
@@ -120,7 +118,7 @@ section { position: relative; }
   z-index: 3;
 }
 /* Наклон каждого сердца задаётся отдельно в его классе:
-   .hero__heart, .hero__heart--right, .about__heart, .contacts__heart,
+   .hero__heart, .about__heart, .contacts__heart,
    .exp__heart, .exp__heart--top (transform: rotate). */
 .flower { position: absolute; width: 110px; z-index: 2; }
 
@@ -154,20 +152,28 @@ section { position: relative; }
 .header nav a:hover { border-color: var(--ink); }
 
 /* ---------- Hero ---------- */
-.hero { height: clamp(620px, 62vw, 820px); overflow: hidden; max-width: 1440px; margin-inline: auto; }
+.hero { height: auto; overflow: hidden; max-width: 1440px; margin: 100px auto 0; /* 110px — отступ секции от шапки (header): меняй число */ }
 .hero__band { position: absolute; left: 0; bottom: 0; width: 1440px; /* фиксированная ширина ленты */ height: auto; pointer-events: none; }
-.hero__blob { position: absolute; left: 0; top: 166px; width: 640px; height: 408px; pointer-events: none; }
-.hero__name {
-  position: absolute; left: clamp(24px, 6vw, 90px); top: 18%;
-  font-family: var(--font-hand), "Marck Script", cursive; font-weight: 400;
-  font-size: clamp(60px, 8.4vw, 130px); line-height: .98;
-  z-index: 2;
+.hero__name { position: absolute; inset: 0; }
+.hero__name-img { position: absolute; left: 0; top: 60px; width: 704px; height: 390px; pointer-events: none; }
+.hero__name-text {
+ position: absolute;
+    display: flex;
+    left: 153px;
+    top: 152px;
+    font-family: var(--font-hand), "Marck Script", cursive;
+    font-size: clamp(80px, 6vw, 80px);
+    line-height: 1;
+    color: var(--ink);
 }
 .hero__name + .hero__role { position: absolute; }
 .hero__role {
-  left: 13%; top: 42%; z-index: 3;
-  width: clamp(300px, 34vw, 460px);
-  transform: rotate(-5deg);
+    left: 280px;
+    top: 360px;
+    z-index: 3;
+    width: 476px;
+    height: 140px;
+    transform: rotate(-5deg);
 }
 .hero__role-img { display: block;
     width: 474px;
@@ -183,68 +189,28 @@ section { position: relative; }
   line-height: 1;
   color: var(--ink);
 }
-.hero__heart { left: 9%; top: 60%; transform:rotate(5deg) scaleX(-1);; }
-.hero__photo { position: absolute; right:70px; top: 14%; z-index: 4; transform: rotate(4deg); }
-/* Фото-стикер: меняй размер (width) здесь — высота подстроится сама */
-.hero__photo-frame { position: relative; width: 538px; aspect-ratio: 1181 / 1332; }
-.hero__photo-real {
-  position: absolute;
-  left: 45.94%;
-  top: 49.42%;
-  width: 67.52%;
-  height: 67.81%;
-  object-fit: cover;
-  transform: translate(-50%, -50%) rotate(3deg);
-  z-index: 0;
-}
-/* Рамка-стикер (SVG): размер и координаты меняются независимо от фото внутри.
-   width — размер (height: auto сохраняет пропорции),
-   top/left — координаты (минус двигает вверх/влево). */
-.hero__photo-img {
-        position: absolute;
-    top: 16px;
-    left: 20px;
-    width: 500px;
-    height: auto;
-    z-index: 1;
-    transform: rotate(10deg);
- /* Угол поворота рамки: меняй число, напр. -3deg или 6deg */
-}
-.hero__flower-img {     position: absolute;
-    left: -40px;
-    top: 32px;
-    width: 154px;
-    height: 220px;
-    z-index: -1;
-    transform: rotate(-32deg);; /* Угол поворота цветка: меняй число, напр. -8deg или 10deg */ }
-.hero__heart--right { right: 19px; top: 243px; left: auto; transform: rotate(5deg); }
+.hero__heart { left: 154px; top: 510px; transform:rotate(5deg) scaleX(-1);; }
+/* Фото-стикер: одна SVG. Меняй отступы (top — отступ сверху, right — отступ справа)
+   и угол наклона (rotate). Минус двигает вверх/влево. */
+.hero__photo { position: relative; margin-left: auto; margin-right: 70px; width: fit-content; z-index: 4; transform: rotate(4deg); }
+/* Размер самой SVG меняй здесь (width) — высота подстроится сама */
+.hero__photo-img { display: block; width: 662px; height: 656px;top: 48px;transform: rotate(5deg); }
 
 /* ---------- Обо мне ---------- */
-.about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; padding-block: 90px; }
+.about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: center; padding-block: 120px; }
 .about__photo {
   position: relative;
   /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
-  top: -104px;
+  top: 0;
   left: 0;
-  width: fit-content;
+  width: 503px;
+  height: 596px;
   justify-self: start;
   transform: rotate(-4deg);
-  margin-left: 24px;
+  margin-left: 100px;
 }
-.about__photo-frame { position: relative; }
-.about__photo-real {
-  position: absolute;
-  left: 49.99%;
-  top: 49.38%;
-  width: 81.39%;
-  height: 84.63%;
-  object-fit: cover;
-  transform: translate(-50%, -50%) rotate(-10deg);
-  z-index: 0;
-}
-/* Фото-стикер «Обо мне»: размер самой SVG меняй здесь (width) */
-.about__photo-img { position: relative; z-index: 1; display: block; width: 503px; height: auto; }
-.about__heart { left: 96px; bottom: 20px; transform: rotate(-21deg); }
+/* Фото-стикер «Обо мне»: одна SVG, размер меняй здесь (width) */
+.about__photo-img { display: block; width: 503px; height: 596px;top: 100px;transform: rotate(-5deg); }
 .about__text {
   position: relative;
   /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
@@ -280,12 +246,15 @@ section { position: relative; }
   /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
   top: 0;
   left: 0;
+  width: 710px;
+    height: 484px;
   /* Поворот бумаги: положительный — по часовой, отрицательный — против */
-  transform: rotate(0deg);
-  width: fit-content;
+  margin-right: 100px;
 }
 /* Размер самой SVG меняй здесь (width) */
-.about__paper-img { display: block; width: 680px; height: auto; }
+.about__paper-img {     display: block;
+    width: 710px;
+    height: 484px; }
 .about__paper-text {
   position: absolute;
   top: 14%;
@@ -300,7 +269,7 @@ section { position: relative; }
   position: relative;
   /* Двигай блок попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
   top: -72px;
-  left: -28px;
+  margin-right: 100px;
   /* Поворот: положительный — по часовой, отрицательный — против */
   transform: rotate(0deg);
   width: fit-content;
@@ -312,7 +281,7 @@ section { position: relative; }
 .about__skills-img { display: block; width: 340px; height: auto; }
 
 /* ---------- Образование / опыт ---------- */
-.exp { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-block: 40px ; align-items: start;  padding-bottom: 0px;}
+.exp { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; align-items: center; padding-block: 120px;}
 .exp__col { position: relative; }
 .exp__label {
   position: relative;
@@ -326,7 +295,7 @@ section { position: relative; }
   z-index: 2;
 }
 /* Размер самой SVG меняй здесь (width) */
-.exp__label-img { display: block; width: 400px; height: auto; }
+.exp__label-img { display: block; width: 397px; height: 100px; }
 .exp__label-text {
   position: absolute;
   inset: 6.5% 2.9% 12.9% 2.9%;
@@ -350,10 +319,10 @@ section { position: relative; }
 /* Размер самой SVG меняй здесь (width) */
 .exp__role-img {
   display: block;
-  width: 398px;
-  height: auto;
+  width: 397px;
+  height: 112px;
   /* Поворот самой SVG (стикер без текста): плюс — по часовой, минус — против */
-  transform: rotate(5deg);
+ 
 }
 .exp__role-text {
   position: absolute;
@@ -369,11 +338,12 @@ section { position: relative; }
 .exp__paper {
   position: relative;
   width: fit-content;
+  transform: rotate(-90deg);
 }
-/* Общее для SVG-бумаги */
-.exp__paper-img { display: block; height: auto; }
-/* Горизонтальное отражение бумаги (правая колонка) */
-.exp__paper-img--flip { transform: scaleX(-1); }
+/* Обёртка бумаги: SVG-фон + текст как единый компонент */
+.exp__paper-img { position: relative; }
+/* Сама SVG-бумага */
+.exp__paper-svg { display: block; width: 746px; height: 608px; }
 
 /* --- Бумага «Образование» (левая) — двигай/меняй независимо --- */
 .exp__paper--edu {
@@ -384,11 +354,11 @@ section { position: relative; }
   transform: rotate(0deg);
 }
 .exp__paper--edu .exp__paper-img {
-  width: 722px;
+  width: 746px;
+  height: 608px;
   /* Двигай только SVG (текст остаётся на месте): top — вниз, left — вправо */
   position: relative;
-  top: 0;
-  left: -34px;
+ 
 }
 
 /* --- Бумага «Опыт работы» (правая) — двигай/меняй независимо --- */
@@ -400,18 +370,20 @@ section { position: relative; }
   transform: rotate(0deg);
 }
 .exp__paper--work .exp__paper-img {
-  width: 722px;
+  width: 746px;
+  height: 608px;
   /* Двигай только SVG (текст остаётся на месте): top — вниз, left — вправо */
-  position: relative;
-  top: 0;
-  left: 0;
+  
+ 
 }
 
-/* Текст поверх бумаги: поле бумаги занимает почти весь SVG (края ~1-2%) */
+/* Текст поверх бумаги: прижат к полю бумаги и не выходит за её края */
 .exp__paper-content {
   position: absolute;
   inset: 1% 2% 2% 2%;
   padding: 70px 38px 70px;
+  width: 507px;
+  overflow: hidden;
 }
 .exp h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
 .exp h4 { font-size: 17px; font-weight: 600; margin: 18px 0 6px; }
@@ -738,14 +710,13 @@ section { position: relative; }
   .contacts__paper-img { width: 100%; }
   .cases__grid { grid-template-columns: 1fr; }
   .contacts__note { position: relative; left: auto; bottom: auto; margin: -20px auto 0; }
-  .hero { height: 760px; }
-  .hero__photo { top: auto; bottom: 90px; right: 50%; transform: translateX(50%) rotate(4deg); }
-  .hero__photo-frame { width: 260px; }
+  .hero { height: auto; }
+  .hero__photo { margin-left: auto; margin-right: auto; }
   .hero__photo-img { width: 260px; }
-  .hero__blob { width: 90%; height: auto; top: 80px; }
-  .hero__name { top: 90px; font-size: 64px; }
+  .hero__name-img { width: 90%; height: auto; top: 80px; }
+  .hero__name-text { top: 90px; font-size: 64px; }
   .hero__role { top: 36%; left: 8%; }
-  .hero__heart:not(.hero__heart--right) { display: none; }
+  .hero__heart { display: none; }
   .header { padding-inline: 24px; }
   .header nav ul { gap: 18px; font-size: 15px; }
 }

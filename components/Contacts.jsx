@@ -29,11 +29,11 @@ export default function Contacts() {
     <section className="contacts container" id="contacts">
       <div className="contacts__left">
         <div className="contacts__heading">
-          <img className="contacts__heading-img" src="/Heading_contacts.svg" alt="" aria-hidden="true" />
+          <img className="contacts__heading-img" src="/heading_yellow.svg" alt="" aria-hidden="true" />
           <span className="contacts__heading-text">Контакты</span>
         </div>
         <div className="contacts__paper">
-          <img className="contacts__paper-img" src="/Description_about.svg" alt="" aria-hidden="true" />
+          <img className="contacts__paper-img" src="/paper.svg" alt="" aria-hidden="true" />
           <div className="contacts__paper-content">
             <ul>
               {items.map((i) => (
@@ -50,14 +50,14 @@ export default function Contacts() {
       </div>
 
       <div className="contacts__note">
-        <img className="contacts__note-img" src="/decor.svg" alt="" aria-hidden="true" />
+        <img className="contacts__note-img" src="/purple_decor.svg" alt="" aria-hidden="true" />
         <span className="contacts__note-text">Давайте превратим идеи в решения</span>
       </div>
 
       <div className="contacts__photo">
         <div className="contacts__photo-frame">
           <img className="contacts__photo-real" src="/images/contact.jpg" alt="" />
-          <img className="contacts__photo-img" src="/Стикеры%20для%20нежного%20скрапбукинга311%203.svg" alt="" aria-hidden="true" />
+          <img className="contacts__photo-img" src="/frame_photo.svg"  />
         </div>
         <Tape color="lilac" className="contacts__tape--lilac" />
         <Tape color="yellow" className="contacts__tape--yellow" />

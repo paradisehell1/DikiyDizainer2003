@@ -12,7 +12,7 @@ export default function Cases() {
     <section className="cases container" id="cases">
       <div className="cases__head">
         <div className="cases__heading">
-          <img className="cases__heading-img" src="/Heading_cases.svg" alt="" aria-hidden="true" />
+          <img className="cases__heading-img" src="/Heading_purple.svg" alt="" aria-hidden="true" />
           <span className="cases__heading-text">Кейсы</span>
         </div>
         <a className="btn-outline" href="#">Смотреть все кейсы</a>
@@ -20,7 +20,7 @@ export default function Cases() {
       <div className="cases__grid">
         {cases.map((c) => (
           <div key={c.id} className="cases__item" style={c.style}>
-            <img className="cases__item-bg" src="/background_case.svg" alt="" aria-hidden="true" />
+            <img className="cases__item-bg" src="/case.svg" alt="" aria-hidden="true" />
             <img className="cases__item-photo" src="/images/Твоё%201.png" alt="" />
             <div className="cases__item-text">
               <h3 className="cases__item-title">{c.title}</h3>

@@ -3,8 +3,7 @@
 export function Tape({ color = "lilac", className = "", style }) {
   const src =
     color === "yellow"
-      ? "/yellow_decore.svg"
-      : "/Стикеры%20для%20нежного%20скрапбукинга51%202.svg";
+    
   return (
     <img
       className={`tape-sticker ${className}`}
