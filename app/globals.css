@@ -343,13 +343,24 @@ section { position: relative; }
 /* Обёртка бумаги: SVG-фон + текст как единый компонент */
 .exp__paper-img { position: relative; }
 /* Сама SVG-бумага */
-.exp__paper-svg { display: block; width: 746px; height: 608px; }
+.exp__paper-svg {
+  display: block;
+  width: 746px;
+  height: auto;
+  /* Чтобы двигать SVG попиксельно независимо от текста */
+  position: relative;
+  /* Двигай попиксельно: top — вниз (минус — вверх), left — вправо (минус — влево) */
+  top: 0;
+  left: -134px;
+}
 
 /* --- Бумага «Образование» (левая) — двигай/меняй независимо --- */
 .exp__paper--edu {
   /* Двигай всю бумагу (SVG + текст вместе): top — вниз, left — вправо */
   top: -230px;
   left: 0;
+
+    margin-left: 100px;
   /* Поворот: плюс — по часовой, минус — против */
   transform: rotate(0deg);
 }
@@ -367,6 +378,7 @@ section { position: relative; }
   top: -187px;
   left: 0;
   /* Поворот: плюс — по часовой, минус — против */
+  margin-right: 100px;
   transform: rotate(0deg);
 }
 .exp__paper--work .exp__paper-img {
